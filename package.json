@@ -1,0 +1,22 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hellonode.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prafful/march2020_node.git"
+  },
+  "author": "prafful daga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prafful/march2020_node/issues"
+  },
+  "homepage": "https://github.com/prafful/march2020_node#readme",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}
