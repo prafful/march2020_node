@@ -29,7 +29,7 @@ app.get('/', function(req, res){
 app.get('/friend/all', (req, res)=>{
     //connect with db and get all friends!
     //res.send('Get all friends from DB!')
-    var query = 'select * from friends'
+    var query = 'select * from friendsnew'
     connection.query(query, (error, success)=>{
         if(error){
             throw error
@@ -47,7 +47,7 @@ app.get('/friend/:id', (req, res)=>{
     //console.log(req);
     console.log(req.params);
     console.log(req.params.id);
-    var query = 'select * from friends where id = ' + req.params.id
+    var query = 'select * from friendsnew where id = ' + req.params.id
     connection.query(query, (error, success)=>{
         if (error){
             throw error
@@ -59,10 +59,9 @@ app.get('/friend/:id', (req, res)=>{
 
 app.post('/friend/add', (req, res)=>{
     console.log(req.body);
-    var id = req.body.id
     var name = req.body.name
     var location = req.body.location
-    var query = "insert into friends (id, name, location) values(" +id +",'"+name +"','"+ location  + "')"
+    var query = "insert into friendsnew ( name, location) values('"+name +"','"+ location  + "')"
     console.log(query);
     connection.query(query, (error)=>{
         if(error){
@@ -74,4 +73,34 @@ app.post('/friend/add', (req, res)=>{
    
 })
 
+app.put('/friend/update/:id', (req, res)=>{
+    console.log(req.body);
+    var id = req.params.id
+    var name = req.body.name
+    var location = req.body.location
+    var query = "update friendsnew set name ='"+name+"', location='"+location+"' where id=" + id
+    console.log(query);
+    connection.query(query, (error)=>{
+        if(error){
+            throw error
+        }
+        res.send("Data update in DB with id of " + id)
+        
+    })
+})
+
+
+app.delete('/friend/delete/:id', (req, res)=>{
+    console.log(req.body);
+    var id = req.params.id
+    var query = "delete from friendsnew where id=" + id
+    console.log(query);
+    connection.query(query, (error)=>{
+        if(error){
+            throw error
+        }
+        res.send("Data deleted in DB with id of " + id)
+        
+    })
+})
 app.listen(1234)
